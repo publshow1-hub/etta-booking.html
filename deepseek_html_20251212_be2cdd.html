@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETTA-BESNISS - احجز خدمتك الأولى</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        :root { 
+            --primary: #2c3e50; 
+            --secondary: #3498db; 
+            --accent: #f1c40f; 
+            --light: #ecf0f1; 
+            --success: #27ae60;
+            --instagram: #E1306C;
+            --facebook: #1877F2;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .logo h1 { 
+            font-size: 32px; 
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .logo span { color: #f1c40f; }
+        .logo p { opacity: 0.9; font-size: 16px; }
+        
+        .hero { 
+            padding: 60px 0; 
+            text-align: center; 
+            background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero h2 { 
+            color: #2c3e50; 
+            font-size: 32px; 
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .hero p { font-size: 18px; margin-bottom: 15px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 25px 0;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+            border: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+        }
+        
+        .services { 
+            padding: 70px 0; 
+            background: #f8f9fa; 
+        }
+        
+        .section-title { 
+            text-align: center; 
+            color: #2c3e50; 
+            margin-bottom: 40px; 
+            font-size: 32px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: #f1c40f;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 5px solid #3498db;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .service-card i {
+            font-size: 50px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .booking-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .form-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 28px;
+        }
+        
+        .form-group { 
+            margin-bottom: 25px; 
+        }
+        
+        .form-group label { 
+            display: block; 
+            margin-bottom: 10px; 
+            font-weight: 600; 
+            color: #555;
+            font-size: 17px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #219653 0%, #27ae60 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+        }
+        
+        .faq { 
+            padding: 70px 0; 
+            background: #f8f9fa; 
+        }
+        
+        .faq-item { 
+            background: white; 
+            margin: 15px 0; 
+            padding: 25px; 
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .faq-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .faq-item h3 i {
+            color: #3498db;
+            margin-left: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon.facebook {
+            background: var(--facebook);
+        }
+        
+        .social-icon.instagram {
+            background: var(--instagram);
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        
+        .social-icon.email {
+            background: #3498db;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        footer { 
+            background: #2c3e50; 
+            color: white; 
+            padding: 50px 0 30px; 
+            text-align: center; 
+        }
+        
+        .contact-info {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-item {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+        
+        .contact-item i {
+            color: #f1c40f;
+            font-size: 22px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 26px; }
+            .booking-form { padding: 30px 20px; }
+            .section-title { font-size: 28px; }
+            .service-card { padding: 25px 20px; }
+        }
+        
+        /* أنيميشن بسيطة */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>ETTA<span>-BESNISS</span></h1>
+                <p>ترفع أعمالك إلى مستوى جديد</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero">
+        <div class="container animate-fade">
+            <h2>هل تريد زيادة الطلبات والمبيعات؟</h2>
+            <p>خدمات <strong style="color: #2c3e50;">ETTA-BESNISS</strong> تساعدك في بناء حضور احترافي عبر تصميم الشعارات، إدارة الحملات، صناعة الصور والفيديو، وتحسين الأداء.</p>
+            <p>ابدأ الآن بخطوة بسيطة واحجز خدمتك الأولى اليوم!</p>
+            <a href="#booking" class="cta-button">احجز خدمتك الآن <i class="fas fa-arrow-left"></i></a>
+        </div>
+    </section>
+
+    <!-- الخدمات -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title animate-fade">خدماتنا المتكاملة</h2>
+            <div class="services-grid">
+                <div class="service-card animate-fade">
+                    <i class="fas fa-palette"></i>
+                    <h3>تصميم الشعارات</h3>
+                    <p>تصميم شعار فريد يعبر عن علامتك التجارية ويجذب عملائك المستهدفين</p>
+                </div>
+                <div class="service-card animate-fade" style="animation-delay: 0.2s;">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>إدارة الحملات</h3>
+                    <p>حملات تسويقية فعالة عبر جميع المنصات الرقمية لزيادة المبيعات</p>
+                </div>
+                <div class="service-card animate-fade" style="animation-delay: 0.4s;">
+                    <i class="fas fa-photo-video"></i>
+                    <h3>صناعة المحتوى</h3>
+                    <p>إنشاء صور وفيديوهات احترافية تجذب الانتباه وتعزز التفاعل</p>
+                </div>
+                <div class="service-card animate-fade" style="animation-delay: 0.6s;">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>تحسين الأداء</h3>
+                    <p>تحليل وتطوير أداء أعمالك وزيادة معدلات التحويل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نموذج الحجز -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <div class="booking-form animate-fade">
+                <h2 class="form-title">احجز خدمتك الأولى الآن</h2>
+                
+                <!-- نموذج الحجز -->
+                <form action="mailto:puplshowe@gmail.com" method="post" enctype="text/plain" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> الاسم الكامل *</label>
+                        <input type="text" name="name" class="form-control" required placeholder="أدخل اسمك الكامل">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> البريد الإلكتروني *</label>
+                        <input type="email" name="email" class="form-control" required placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> رقم الهاتف *</label>
+                        <input type="tel" name="phone" class="form-control" required placeholder="05XXXXXXXX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-concierge-bell"></i> الخدمة المطلوبة *</label>
+                        <select name="service" class="form-control" required>
+                            <option value="">اختر الخدمة التي تريدها</option>
+                            <option value="تصميم الشعارات">تصميم الشعارات والهوية البصرية</option>
+                            <option value="إدارة الحملات">إدارة الحملات التسويقية</option>
+                            <option value="صناعة المحتوى">صناعة المحتوى المرئي (صور/فيديو)</option>
+                            <option value="تحسين الأداء">تحليل وتحسين الأداء</option>
+                            <option value="باقة متكاملة">باقة متكاملة (أكثر من خدمة)</option>
+                            <option value="استشارة مجانية">استشارة مجانية أولية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-comment-alt"></i> معلومات إضافية عن مشروعك</label>
+                        <textarea name="message" class="form-control" rows="5" placeholder="أخبرنا المزيد عن مشروعك، أهدافك، ميزانيتك، والنتائج التي تتوقعها..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">إرسال طلب الحجز <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأسئلة الشائعة -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title animate-fade">الأسئلة الشائعة</h2>
+            
+            <div class="faq-item animate-fade">
+                <h3><i class="fas fa-question-circle"></i> كيف يتم تحديد سعر الخدمات؟</h3>
+                <p>تختلف الأسعار حسب نوع الخدمة وتعقيد المشروع ومتطلباتك الخاصة. بعد تعبئة النموذج، سنتواصل معك خلال 24 ساعة لتحديد الاحتياجات الدقيقة وتقديم عرض سعر مناسب وشفاف.</p>
+            </div>
+            
+            <div class="faq-item animate-fade">
+                <h3><i class="fas fa-question-circle"></i> ما هي مدة تنفيذ خدمة تصميم الشعار؟</h3>
+                <p>عادةً ما تستغرق عملية تصميم الشعار من 5 إلى 10 أيام عمل، حسب عدد المراجعات والتعديلات المطلوبة. نقدم عادةً 3 تصاميم أولية لتختار منها.</p>
+            </div>
+            
+            <div class="faq-item animate-fade">
+                <h3><i class="fas fa-question-circle"></i> هل تقدمون استشارة مجانية أولية؟</h3>
+                <p>نعم، نقدم استشارة مجانية أولية لمدة 30 دقيقة لتفهم احتياجاتك وتقديم التوجيه المناسب قبل البدء في أي مشروع. يمكنك طلبها من خلال اختيار "استشارة مجانية" في النموذج أعلاه.</p>
+            </div>
+            
+            <div class="faq-item animate-fade">
+                <h3><i class="fas fa-question-circle"></i> كيف يمكنني متابعة حالة طلبي؟</h3>
+                <p>سنقوم بتعيين مدير مشروع خاص بك سيكون على تواصل دائم معك لتحديثك بمراحل التقدم وإشراكك في العملية. كما يمكنك التواصل معنا عبر أي من قنوات التواصل المذكورة أدناه.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- وسائل التواصل -->
+    <section style="padding: 50px 0; background: white;">
+        <div class="container">
+            <h2 class="section-title animate-fade">تواصل معنا</h2>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61581185617414" target="_blank" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/etta_bessnis?igsh=Zmt3cGtmcDZmZ2Jy" target="_blank" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:puplshowe@gmail.com" class="social-icon email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <h2 style="margin-bottom: 10px; color: #f1c40f;">ETTA-BESNISS</h2>
+            <p style="opacity: 0.9; font-size: 18px;">ترفع أعمالك إلى مستوى جديد</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>puplshowe@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-facebook"></i>
+                    <span>facebook.com/etta-besniss</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <span>@etta_bessnis</span>
+                </div>
+            </div>
+            
+            <p style="margin-top: 30px; opacity: 0.8; font-size: 15px;">
+                © 2023 ETTA-BESNISS. جميع الحقوق محفوظة.<br>
+                تصميم وتطوير لخدماتك الاحترافية
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // التحقق من النموذج
+        function validateForm() {
+            const name = document.querySelector('input[name="name"]').value;
+            const phone = document.querySelector('input[name="phone"]').value;
+            const service = document.querySelector('select[name="service"]').value;
+            
+            if (!name || !phone || !service) {
+                alert("يرجى ملء جميع الحقول المطلوبة");
+                return false;
+            }
+            
+            // تأكيد الإرسال
+            setTimeout(() => {
+                alert(`شكراً ${name}! تم استلام طلبك بنجاح.\nسنقوم بالتواصل معك على ${phone} خلال 24 ساعة.\n\nنوع الخدمة: ${service}`);
+            }, 500);
+            
+            return true;
+        }
+        
+        // إضافة أنيميشن عند التمرير
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade');
+                    }
+                });
+            }, observerOptions);
+            
+            // مراقبة العناصر لإضافة الأنيميشن
+            document.querySelectorAll('.service-card, .faq-item').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // تنبيه عند النقر على وسائل التواصل
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                const type = this.classList.contains('facebook') ? 'فيسبوك' : 
+                            this.classList.contains('instagram') ? 'إنستغرام' : 'البريد الإلكتروني';
+                
+                console.log(`سيتم فتح ${type} في نافذة جديدة...`);
+            });
+        });
+    </script>
+</body>
+</html>
